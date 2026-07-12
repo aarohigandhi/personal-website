@@ -1,26 +1,161 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Design tokens. Two colors (ink on paper) plus a single warm accent.
+   Dark mode follows the system preference — there is no toggle, by design.
+--------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --paper: #fbfaf7; /* warm off-white */
+  --ink: #1b1b18; /* near-black */
+  --muted: #6c6b62; /* secondary text */
+  --faint: #94938a; /* tertiary text / metadata */
+  --rule: #e8e5dd; /* hairline dividers */
+  --accent: #b0472c; /* one accent, for links */
+  --accent-soft: #c9563a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #100f0d; /* warm near-black */
+    --ink: #eae7e0; /* warm off-white */
+    --muted: #928f85;
+    --faint: #74716a;
+    --rule: #262420;
+    --accent: #e0795c;
+    --accent-soft: #ea8365;
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-serif), ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Accessible focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Respect reduced-motion; we ship almost no motion anyway */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   .prose — long-form reading styles for MDX posts. Hand-rolled (no plugin)
+   to keep the CSS payload tiny.
+--------------------------------------------------------------------------- */
+.prose {
+  color: var(--ink);
+}
+.prose > * + * {
+  margin-top: 1.35em;
+}
+.prose h2 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-top: 2.4em;
+  margin-bottom: 0.2em;
+}
+.prose h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 1.8em;
+}
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote {
+  color: var(--ink);
+}
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2.5px;
+}
+.prose a:hover {
+  color: var(--accent-soft);
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.25em;
+}
+.prose li + li {
+  margin-top: 0.4em;
+}
+.prose ul {
+  list-style: disc;
+}
+.prose ol {
+  list-style: decimal;
+}
+.prose blockquote {
+  border-left: 2px solid var(--rule);
+  padding-left: 1em;
+  color: var(--muted);
+  font-style: italic;
+}
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.prose pre {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+}
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+}
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.5em 0;
 }

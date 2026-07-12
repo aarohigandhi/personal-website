@@ -1,0 +1,60 @@
+{/*
+  TEMPLATE POST — rewrite this with your real numbers and story.
+  Format (keep it): problem → what I tried → what broke → the number →
+  what I'd do differently. 800–1500 words. Put one plot at the very top.
+*/}
+
+> Draft. This post is scaffolding that shows the format — replace the copy
+> with the real Screenshot Brain eval story before publishing.
+
+## The problem
+
+I built Screenshot Brain to search my screenshots by meaning: type "the error
+about the expired token" and get the right image back, even if the word
+"token" never appears on screen. The demo looked magic. The problem with magic
+demos is you have no idea if they actually work — you type the three queries
+you know succeed and call it done.
+
+So the real question wasn't "can it search?" It was: **how good is the search,
+and how would I even know?**
+
+## What I tried
+
+I built a small evaluation harness before adding a single feature:
+
+- A labeled set of ~120 (query, correct-screenshot) pairs drawn from my own
+  library, written before I looked at what the model returned.
+- A metric that matches the task: recall@k and mean reciprocal rank, not raw
+  cosine similarity, because what I care about is "is the right image in the
+  top few?"
+- A fixed test command so every change reports the same numbers on the same
+  data.
+
+The point was to make quality a number I could watch move, not a vibe.
+
+## What broke
+
+The first honest run was humbling: **recall@5 was 0.61.** Four out of ten
+searches didn't surface the right screenshot in the top five.
+
+Digging into the misses, most failures weren't the model — they were the
+pipeline around it: OCR dropping text on low-contrast UI, and my chunking
+splitting a single screenshot's text so no chunk held the whole thought.
+
+## The number
+
+After fixing OCR preprocessing and stopping the over-eager chunking,
+**recall@5 went from 0.61 → 0.88** on the same held-out set. The embedding
+model never changed. The eval was what told me where the real bug was.
+
+## What I'd do differently
+
+- Write the eval set *first*, next time from day zero — I lost a week trusting
+  a demo.
+- Expand the labeled set; 120 pairs is enough to catch big regressions, not to
+  trust small deltas.
+- Log every miss automatically so the failures come to me instead of me
+  hunting for them.
+
+The lesson that generalizes: a demo tells you the good case exists. An eval
+tells you how often the bad case happens. Only one of those is worth trusting.

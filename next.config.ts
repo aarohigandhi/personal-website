@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Static export -> plain HTML/CSS/JS. Hosts anywhere, readable with JS off.
+  output: "export",
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+  images: { unoptimized: true },
+  trailingSlash: true,
 };
 
-export default nextConfig;
+const withMDX = createMDX();
+
+export default withMDX(nextConfig);
