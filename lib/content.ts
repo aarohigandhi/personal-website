@@ -14,11 +14,10 @@
 
 export const site = {
   name: "Aarohi Gandhi",
-  // One line on what you build. Not a tagline.
-  tagline:
-    "Applied math at UW, enrolled at 15 through the Robinson Center. I build ML systems and ship things people use.",
+  // One line on what you are, in a breath.
+  tagline: "I build systems where ML meets the real world.",
   description:
-    "Aarohi Gandhi — applied math at UW. I build ML systems and ship things people actually use: a security-learning platform with thousands of users, semantic search with a real eval harness, and inference-systems work in progress.",
+    "Aarohi Gandhi — engineer at UW building agentic and retrieval systems. Entered UW at 15 through the Robinson Center. Founded CyberMinds (5,000+ users, 12 countries). I build things that help people, and write down what broke.",
   url: "https://aarohigandhi.com", // TODO: confirm domain before launch
   // TODO: switch to aarohi@aarohigandhi.com once the domain + forwarding are live.
   email: "aarohigandhi@hotmail.com",
@@ -30,31 +29,13 @@ export const site = {
   },
 } as const;
 
-/* --- Hero: the first thing people see. Personal, confident, defensible. --- */
-export const hero = {
-  greeting: "Hi, I'm Aarohi",
-  // Rendered large. Keep it punchy.
-  headline: "I build ML systems and ship things people actually use.",
-  blurb:
-    "Applied math at UW — I got in at 15. I founded a security-learning platform that thousands of people use across a dozen countries, and I spend most of my time on the systems and evaluation side of ML. Chess player, so I think most interesting problems are really about search.",
-};
-
-/* --- Quick facts: little chips under the hero. Concrete, all true. --- */
-export const quickFacts: string[] = [
-  "Applied math @ UW",
-  "Enrolled at 15",
-  "Founder, CyberMinds",
-  "5,000+ users",
-  "Chess",
-];
-
 /* --- About: four sentences, max. Who you are, what you build now, what next,
        and one human line. All defensible. --- */
 export const about: string[] = [
-  "I'm an applied math student at the University of Washington, where I enrolled at 15 through the Robinson Center.",
-  "I build ML systems and ship things people actually use — a security-learning platform I founded that thousands of people use across a dozen countries, a shipped iOS app, and full-stack semantic search with a real eval harness behind it.",
-  "Right now I'm most interested in ML systems and inference: making models measurably faster and better, not just demos that look good.",
-  "I've played chess seriously for years — it's where I learned that a good search beats brute force, which is most of what I find interesting about this work.",
+  "i entered uw at 15 through the robinson center's early entrance program, where i study computer science.",
+  "at 15 i also founded cyberminds, an ai + cybersecurity learning platform that 5,000+ people now use across 12 countries. since then i've shipped semantic search with a real eval harness, an ml threat-detection pipeline, and an ios app.",
+  "lately i've been obsessed with agentic and retrieval systems — getting models to actually do things, not just answer. i love building things that help people, companies, and systems.",
+  "i've played chess seriously for years. it's where i first fell for search — and knowing when to stop calculating and just move.",
 ];
 
 export type Accent = "rust" | "teal" | "plum" | "gold";
@@ -76,45 +57,45 @@ export type Project = {
   featured?: boolean;
 };
 
-/* --- Selected work: four projects, most legible number first. --- */
+/* --- Selected work. Order matters: lead with the flagship. --- */
 export const projects: Project[] = [
-  {
-    name: "CyberMinds",
-    accent: "rust",
-    meta: "2022 – present · Founder",
-    blurb:
-      "Browser-based Linux terminals backed by Docker for learning security hands-on — CTF challenges and courses on top. Handles isolation, resource limits, and teardown so thousands of strangers can get a shell without breaking anything that matters.",
-    metric: "5,000+ monthly users · 12 countries",
-    tags: ["Docker", "Next.js", "WebSockets", "Security", "Infra"],
-    links: [
-      { label: "Site", href: "#" }, // TODO: real link
-      { label: "GitHub", href: "#" }, // TODO
-    ],
-    featured: true,
-  },
   {
     name: "Screenshot Brain",
     accent: "teal",
-    meta: "2026",
+    meta: "2026 · flagship",
     blurb:
-      "Full-stack semantic search over your screenshots. The interesting part isn't the search — it's the labeled eval harness I built to grade top-3 retrieval accuracy and find where it was quietly failing.",
-    metric: "Labeled eval harness · top-3 retrieval",
-    tags: ["Next.js", "pgvector", "Claude vision", "Evals", "Search"],
+      "full-stack semantic search over your screenshots — the graveyard of information nobody can search. the interesting part isn't the search, it's the labeled eval harness i built to grade top-3 retrieval accuracy and find where it was quietly failing.",
+    metric: "labeled eval harness · top-3 retrieval",
+    tags: ["Next.js", "pgvector", "Claude vision", "evals", "search"],
     links: [
-      { label: "GitHub", href: "#" }, // TODO
-      { label: "Write-up", href: "/writing/screenshot-brain-eval/" },
+      { label: "github", href: "#" }, // TODO
+      { label: "write-up", href: "/writing/screenshot-brain-eval/" },
     ],
     featured: true,
   },
   {
-    name: "Adaptive KV-Cache Compression",
-    accent: "plum",
-    meta: "In progress",
+    name: "CyberMinds",
+    accent: "rust",
+    meta: "2022 – present · founder",
     blurb:
-      "A custom decode loop with pluggable KV-cache eviction policies, benchmarked against published baselines run under identical instrumentation. In progress — I'll publish the result either way, including a clean negative one.",
-    metric: "Inference systems · honest baselines",
-    tags: ["PyTorch", "Transformers", "Inference", "LLMs", "Systems"],
-    links: [{ label: "GitHub", href: "#" }], // TODO
+      "an ai + cybersecurity learning platform: browser-based linux terminals on docker, ctf challenges, and courses. i handle the isolation, resource limits, and teardown so thousands of strangers can get a shell without breaking anything that matters.",
+    metric: "5,000+ monthly users · 12 countries",
+    tags: ["Docker", "Next.js", "WebSockets", "security", "infra"],
+    links: [
+      { label: "site", href: "#" }, // TODO
+      { label: "github", href: "#" }, // TODO
+    ],
+    featured: true,
+  },
+  {
+    name: "CareVision AI",
+    accent: "plum",
+    meta: "2024 · DubHacks",
+    blurb:
+      "a computer-vision tool built at dubhacks to help with everyday sight tasks. built and demoed end-to-end in a weekend with a small team.", // TODO: sharpen what it actually does
+    metric: "2nd of 200+ teams",
+    tags: ["computer vision", "Python", "health"],
+    links: [{ label: "github", href: "#" }], // TODO
     featured: true,
   },
   {
@@ -122,11 +103,22 @@ export const projects: Project[] = [
     accent: "gold",
     meta: "2024 – 2025 · Microsoft Imagine Cup",
     blurb:
-      "End-to-end ML threat-detection pipeline: feature engineering on URL and email metadata, a scikit-learn classifier, an evaluation pipeline, and a real-time alerting dashboard. Led a 5-person team through the full lifecycle.",
+      "end-to-end ml threat-detection pipeline: feature engineering on url and email metadata, a scikit-learn classifier, an evaluation pipeline, and a real-time alerting dashboard. led a 5-person team through the full lifecycle.",
     metric: "-45% test-set breach rate",
-    tags: ["scikit-learn", "Python", "ML", "Security"],
-    links: [{ label: "GitHub", href: "#" }], // TODO
-    featured: true,
+    tags: ["scikit-learn", "Python", "ML", "security"],
+    links: [{ label: "github", href: "#" }], // TODO
+    featured: false,
+  },
+  {
+    name: "Adaptive KV-Cache Compression",
+    accent: "gold",
+    meta: "in progress",
+    blurb:
+      "a custom decode loop with pluggable kv-cache eviction policies, benchmarked against published baselines under identical instrumentation. my move into inference systems — i'll publish the result either way, including a clean negative one.",
+    metric: "coming soon · inference systems",
+    tags: ["PyTorch", "transformers", "inference", "LLMs"],
+    links: [{ label: "github", href: "#" }], // TODO
+    featured: false,
   },
 ];
 
@@ -190,18 +182,18 @@ export const now = {
 export const interests: { emoji: string; label: string; note: string }[] = [
   {
     emoji: "♟️",
-    label: "Chess",
-    note: "Years of competitive play. It's where I first fell for search, pruning, and knowing when to stop calculating.",
+    label: "chess",
+    note: "years of competitive play. where i first fell for search, pruning, and knowing when to stop calculating.",
   },
   {
     emoji: "🛡️",
-    label: "Security & CTFs",
-    note: "The reason CyberMinds exists — I wanted the sandbox I wished I'd had.",
+    label: "security & ctfs",
+    note: "the reason cyberminds exists — i wanted the sandbox i wished i'd had.",
   },
   {
     emoji: "🧠",
-    label: "ML systems",
-    note: "Inference, evals, and making models measurably better instead of just demoable.",
+    label: "ml systems",
+    note: "inference, evals, and making models measurably better instead of just demoable.",
   },
   // TODO: add 1–2 genuinely personal ones so this doesn't read like a resume
   // (music you love, a sport, something you're reading, where you grew up...).

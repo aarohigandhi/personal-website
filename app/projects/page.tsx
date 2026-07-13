@@ -1,27 +1,57 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { projects, site } from "@/lib/content";
-import { ProjectCard } from "@/components/ProjectCard";
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "projects",
   description: `Selected work by ${site.name}.`,
 };
 
+function ProjectLink({ label, href }: { label: string; href: string }) {
+  const external = href.startsWith("http");
+  const arrow = external ? " ↗" : " →";
+  return external ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="link">
+      {label}
+      {arrow}
+    </a>
+  ) : (
+    <Link href={href} className="link">
+      {label}
+      {arrow}
+    </Link>
+  );
+}
+
 export default function ProjectsPage() {
   return (
-    <main className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
-      <p className="fade-up font-mono text-sm text-accent">Selected work</p>
-      <h1 className="fade-up mt-3 font-serif text-4xl font-medium tracking-[-0.02em] text-ink sm:text-5xl">
-        Things I&apos;ve built
-      </h1>
-      <p className="fade-up mt-4 max-w-2xl text-lg text-muted">
-        Each of these shipped to real users or produced a real result. Numbers
-        are ones I can reconstruct on demand.
+    <main className="mx-auto max-w-2xl px-6 pb-8 pt-10 sm:pt-16">
+      <p className="fade-in text-bright">projects</p>
+      <p className="fade-in mt-2 text-muted">
+        things i&apos;ve built. every number here is one i can reconstruct on
+        demand.
       </p>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2">
+      <div className="fade-in mt-12 space-y-12">
         {projects.map((p) => (
-          <ProjectCard key={p.name} project={p} />
+          <article key={p.name}>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h2 className="text-bright">{p.name}</h2>
+              {p.meta && <span className="text-sm text-faint">{p.meta}</span>}
+            </div>
+
+            <p className="mt-1 text-sm text-link">{p.metric}</p>
+
+            <p className="mt-3 text-text">{p.blurb}</p>
+
+            <p className="mt-3 text-sm text-faint">{p.tags.join(" · ")}</p>
+
+            <div className="mt-2 flex flex-wrap gap-x-5 text-sm">
+              {p.links.map((l) => (
+                <ProjectLink key={l.label} label={l.label} href={l.href} />
+              ))}
+            </div>
+          </article>
         ))}
       </div>
     </main>

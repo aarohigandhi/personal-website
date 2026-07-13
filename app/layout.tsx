@@ -1,30 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, Newsreader } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/content";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 
-// Body / UI: a clean, quiet sans.
-const inter = Inter({
+// One typeface, monospace — the whole voice of the site.
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-mono",
   display: "swap",
-});
-
-// Name + post titles: an editorial serif made for reading on screens.
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: `${site.name} — ${site.tagline}`,
-    template: `%s — ${site.name}`,
+    template: `%s · ${site.name}`,
   },
   description: site.description,
   openGraph: {
@@ -41,10 +33,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${newsreader.variable} h-full`}
-    >
+    <html lang="en" className={`${mono.variable} h-full`}>
       <body className="flex min-h-full flex-col">
         <Nav />
         <div className="flex-1">{children}</div>

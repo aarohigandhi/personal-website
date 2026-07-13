@@ -1,116 +1,113 @@
 import Link from "next/link";
-import {
-  site,
-  hero,
-  quickFacts,
-  projects,
-  posts,
-  now,
-} from "@/lib/content";
+import { projects, posts } from "@/lib/content";
 import { formatDate } from "@/lib/format";
-import { ProjectCard } from "@/components/ProjectCard";
+
+/* A section label using a "~/" path motif — a small nod to the terminals I
+   build. Original to this site, not borrowed. */
+function Label({
+  children,
+  href,
+  cta,
+}: {
+  children: string;
+  href?: string;
+  cta?: string;
+}) {
+  return (
+    <div className="flex items-baseline justify-between">
+      <p className="text-sm text-faint">
+        <span className="text-link">~/</span>
+        {children}
+      </p>
+      {href && cta && (
+        <Link href={href} className="text-sm text-faint hover:text-link">
+          {cta} →
+        </Link>
+      )}
+    </div>
+  );
+}
+
+function firstSentence(s: string) {
+  const i = s.indexOf(". ");
+  return i === -1 ? s : s.slice(0, i + 1);
+}
 
 export default function Home() {
-  const featured = projects.filter((p) => p.featured);
+  const work = projects.slice(0, 3);
   const published = posts
     .filter((p) => p.published)
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 3);
 
   return (
-    <main>
-      {/* ---------------- Hero ---------------- */}
-      <section className="relative overflow-hidden">
-        <div className="aurora" />
-        <div className="mx-auto max-w-5xl px-5 pb-16 pt-20 sm:pt-28">
-          <p className="fade-up font-mono text-sm text-accent">
-            {hero.greeting} <span className="inline-block">👋</span>
-          </p>
-          <h1
-            className="fade-up mt-4 max-w-3xl font-serif text-4xl font-medium leading-[1.08] tracking-[-0.025em] text-ink sm:text-6xl"
-            style={{ animationDelay: "0.05s" }}
+    <main className="mx-auto max-w-2xl px-6 pb-10 pt-8 sm:pt-12">
+      {/* intro */}
+      <div className="fade-in space-y-5 leading-[1.9]">
+        <p className="text-lg text-bright">
+          i build systems where ML meets the real world.
+        </p>
+        <p>
+          i entered uw at 15 through the{" "}
+          <a
+            href="https://robinsoncenter.uw.edu/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link"
           >
-            {hero.headline}
-          </h1>
-          <p
-            className="fade-up mt-6 max-w-2xl text-lg leading-relaxed text-muted"
-            style={{ animationDelay: "0.1s" }}
-          >
-            {hero.blurb}
-          </p>
+            robinson center
+          </a>
+          , studying computer science. at 15 i also founded{" "}
+          <span className="text-bright">cyberminds</span>, an ai + cybersecurity
+          learning platform that 5,000+ people use across 12 countries.
+        </p>
+        <p>
+          lately i&apos;ve been obsessed with agentic and retrieval systems —
+          getting models to actually{" "}
+          <span className="text-bright">do</span> things, not just answer.{" "}
+          <span className="text-hot">
+            i think the fastest way to understand something is to build it and
+            measure it.
+          </span>
+        </p>
+      </div>
 
-          <div
-            className="fade-up mt-7 flex flex-wrap gap-2"
-            style={{ animationDelay: "0.15s" }}
-          >
-            {quickFacts.map((f) => (
-              <span
-                key={f}
-                className="rounded-full border border-rule bg-raised px-3 py-1 font-mono text-xs text-muted"
-              >
-                {f}
-              </span>
-            ))}
-          </div>
-
-          <div
-            className="fade-up mt-9 flex flex-wrap items-center gap-3"
-            style={{ animationDelay: "0.2s" }}
-          >
-            <Link
-              href="/projects"
-              className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-paper transition-transform hover:-translate-y-0.5"
-            >
-              See my work
-            </Link>
-            <Link
-              href="/writing"
-              className="rounded-full border border-rule bg-raised px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent/50"
-            >
-              Read my writing
-            </Link>
-            <a
-              href={`mailto:${site.email}`}
-              className="px-2 text-sm font-medium text-muted underline decoration-1 underline-offset-4 hover:text-accent"
-            >
-              Get in touch
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- Featured work ---------------- */}
-      <section className="mx-auto max-w-5xl px-5 py-12">
-        <SectionHeading kicker="Selected work" href="/projects" cta="All projects" />
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
-          {featured.map((p) => (
-            <ProjectCard key={p.name} project={p} />
+      {/* work */}
+      <section className="fade-in mt-10 border-t border-rule pt-8">
+        <Label href="/projects" cta="all">
+          work
+        </Label>
+        <ul className="mt-5 space-y-5">
+          {work.map((p) => (
+            <li key={p.name}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+                <span className="text-bright">{p.name}</span>
+                <span className="text-sm text-link">{p.metric}</span>
+              </div>
+              <p className="mt-0.5 text-sm text-muted">
+                {firstSentence(p.blurb)}
+              </p>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
-      {/* ---------------- Latest writing ---------------- */}
-      <section className="mx-auto max-w-5xl px-5 py-12">
-        <SectionHeading kicker="Writing" href="/writing" cta="All writing" />
+      {/* writing */}
+      <section className="fade-in mt-10 border-t border-rule pt-8">
+        <Label href="/writing" cta="all">
+          writing
+        </Label>
         {published.length === 0 ? (
-          <p className="mt-6 text-muted">First essay is on the way.</p>
+          <p className="mt-5 text-muted">first essay is on the way.</p>
         ) : (
-          <ul className="mt-6 divide-y divide-rule">
+          <ul className="mt-5 space-y-2">
             {published.map((post) => (
-              <li key={post.slug}>
-                <Link
-                  href={`/writing/${post.slug}/`}
-                  className="group flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
-                >
-                  <div className="sm:flex-1">
-                    <h3 className="font-serif text-lg text-ink transition-colors group-hover:text-accent">
-                      {post.title}
-                    </h3>
-                    <p className="mt-0.5 text-sm text-muted">{post.summary}</p>
-                  </div>
-                  <time className="font-mono text-xs text-faint">
-                    {formatDate(post.date)}
-                  </time>
+              <li key={post.slug} className="flex flex-wrap gap-x-3">
+                <time className="shrink-0 text-faint">
+                  {formatDate(post.date)}
+                </time>
+                <Link href={`/writing/${post.slug}/`} className="link">
+                  {post.title}
                 </Link>
               </li>
             ))}
@@ -118,55 +115,16 @@ export default function Home() {
         )}
       </section>
 
-      {/* ---------------- Now + CTA ---------------- */}
-      <section className="mx-auto max-w-5xl px-5 py-12">
-        <div className="grid gap-6 rounded-2xl border border-rule bg-raised p-7 sm:grid-cols-[1fr_auto] sm:items-center">
-          <div>
-            <SectionHeading kicker={`Now · ${now.updated}`} />
-            <ul className="mt-5 space-y-2">
-              {now.items.map((item, i) => (
-                <li key={i} className="flex gap-3 text-[0.95rem] text-ink/90">
-                  <span className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <Link
-            href="/about"
-            className="justify-self-start rounded-full border border-rule bg-paper px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent/50 sm:justify-self-end"
-          >
-            More about me →
-          </Link>
-        </div>
+      {/* now */}
+      <section className="fade-in mt-10 border-t border-rule pt-8">
+        <Label>now</Label>
+        <p className="mt-5 text-muted">
+          building{" "}
+          <span className="text-bright">adaptive kv-cache compression</span> —
+          my move into inference systems. i&apos;ll publish the result either
+          way, including a clean negative one.
+        </p>
       </section>
     </main>
-  );
-}
-
-function SectionHeading({
-  kicker,
-  href,
-  cta,
-}: {
-  kicker: string;
-  href?: string;
-  cta?: string;
-}) {
-  return (
-    <div className="flex items-center justify-between gap-4">
-      <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-accent">
-        <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
-        {kicker}
-      </h2>
-      {href && cta && (
-        <Link
-          href={href}
-          className="whitespace-nowrap text-sm text-muted transition-colors hover:text-accent"
-        >
-          {cta} →
-        </Link>
-      )}
-    </div>
   );
 }
