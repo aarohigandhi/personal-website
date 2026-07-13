@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site, about, projects, posts, now } from "@/lib/content";
+import { site, about, projects, posts, now, honors } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 
 /* Small monospace section label — the only "chrome" on the page. */
@@ -75,6 +75,9 @@ export default function Home() {
                 <h3 className="font-serif text-xl text-ink">{p.name}</h3>
                 <span className="font-mono text-xs text-faint">{p.metric}</span>
               </div>
+              {p.meta && (
+                <p className="mt-0.5 font-mono text-xs text-faint">{p.meta}</p>
+              )}
               <p className="mt-1.5 text-muted">{p.blurb}</p>
               <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
                 {p.stack && (
@@ -131,6 +134,18 @@ export default function Home() {
         </ul>
         <p className="mt-4 font-mono text-xs text-faint">
           Updated {now.updated}
+        </p>
+      </Section>
+
+      {/* Honors — one compact line. */}
+      <Section label="Honors">
+        <p className="text-muted">
+          {honors.map((h, i) => (
+            <span key={h}>
+              {i > 0 && <span className="text-faint"> · </span>}
+              {h}
+            </span>
+          ))}
         </p>
       </Section>
 

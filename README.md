@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# aarohigandhi.com
 
-## Getting Started
+Personal website and writing. A container for essays, not a portfolio wall.
 
-First, run the development server:
+Single column, two colors, dark mode from system preference. Static HTML —
+readable with JavaScript off, built to load in well under a second.
+
+## Stack
+
+- **Next.js 16** (App Router) with `output: "export"` → static HTML/CSS
+- **MDX** for essays (`@next/mdx`)
+- **Tailwind CSS v4** for styling
+- **TypeScript**
+- Fonts: Inter (sans) + Newsreader (serif) via `next/font`; system monospace
+
+No client-side framework runtime beyond what Next ships for hydration; pages
+are prerendered and render fully without JS.
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # static export -> ./out
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run build` writes a fully static site to `out/`. Serve it anywhere
+(`npx serve out`) or let Vercel build it.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where everything lives
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| What | File |
+| --- | --- |
+| All home-page copy, projects, post list, Now, links | `lib/content.ts` |
+| Home page | `app/page.tsx` |
+| Writing index | `app/writing/page.tsx` |
+| An essay | `app/writing/<slug>/` |
+| Colors, fonts, prose styles | `app/globals.css` |
+| Post wrapper (title, date, prose) | `components/PostShell.tsx` |
 
-## Learn More
+**To change any text on the home page, edit `lib/content.ts`.** Nothing on the
+page is hard-coded elsewhere.
 
-To learn more about Next.js, take a look at the following resources:
+## Add a new essay
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Create `app/writing/<slug>/content.mdx` — write the post in Markdown.
+2. Create `app/writing/<slug>/page.tsx` (copy an existing one; change `slug`).
+3. Add an entry to `posts` in `lib/content.ts` with the same `slug`,
+   `title`, `summary`, `date`, and `published: true`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The post inherits the shared title/date header and prose styles automatically.
 
-## Deploy on Vercel
+House format for every post: **problem → what I tried → what broke → the
+number → what I'd do differently.** One plot at the top.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Before launch — checklist
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Replace placeholder copy in `lib/content.ts` (marked `TODO`)
+- [ ] Add real project links (currently `#`)
+- [ ] Drop your resume at `public/resume.pdf` (delete `public/resume-README.txt`)
+- [ ] Confirm `site.url` and the LinkedIn handle
+- [ ] Buy the domain and attach it in Vercel
+- [ ] Check it on your phone first
+
+## Deploy
+
+Push to GitHub, import the repo in Vercel, attach the domain. Vercel detects
+the static export automatically. No configuration needed.
