@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/content";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 
 // Body / UI: a clean, quiet sans.
 const inter = Inter({
@@ -43,7 +45,11 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${newsreader.variable} h-full`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <Nav />
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -30,6 +30,24 @@ export const site = {
   },
 } as const;
 
+/* --- Hero: the first thing people see. Personal, confident, defensible. --- */
+export const hero = {
+  greeting: "Hi, I'm Aarohi",
+  // Rendered large. Keep it punchy.
+  headline: "I build ML systems and ship things people actually use.",
+  blurb:
+    "Applied math at UW — I got in at 15. I founded a security-learning platform that thousands of people use across a dozen countries, and I spend most of my time on the systems and evaluation side of ML. Chess player, so I think most interesting problems are really about search.",
+};
+
+/* --- Quick facts: little chips under the hero. Concrete, all true. --- */
+export const quickFacts: string[] = [
+  "Applied math @ UW",
+  "Enrolled at 15",
+  "Founder, CyberMinds",
+  "5,000+ users",
+  "Chess",
+];
+
 /* --- About: four sentences, max. Who you are, what you build now, what next,
        and one human line. All defensible. --- */
 export const about: string[] = [
@@ -39,62 +57,76 @@ export const about: string[] = [
   "I've played chess seriously for years — it's where I learned that a good search beats brute force, which is most of what I find interesting about this work.",
 ];
 
+export type Accent = "rust" | "teal" | "plum" | "gold";
+
 export type Project = {
   name: string;
+  // Each card gets one of the four palette colors.
+  accent: Accent;
   // Optional context/date shown next to the name (e.g. year, "in progress").
   meta?: string;
   // Roughly two lines — what it is, why it's interesting.
   blurb: string;
-  // The one number or fact that earns attention. Monospace stat.
+  // The one number or fact that earns attention.
   metric: string;
-  // Stack / context, shown small.
-  stack?: string;
+  // Tech / topic chips.
+  tags: string[];
   links: { label: string; href: string }[];
+  // Show on the home page's featured grid.
+  featured?: boolean;
 };
 
 /* --- Selected work: four projects, most legible number first. --- */
 export const projects: Project[] = [
   {
     name: "CyberMinds",
+    accent: "rust",
     meta: "2022 – present · Founder",
     blurb:
       "Browser-based Linux terminals backed by Docker for learning security hands-on — CTF challenges and courses on top. Handles isolation, resource limits, and teardown so thousands of strangers can get a shell without breaking anything that matters.",
     metric: "5,000+ monthly users · 12 countries",
-    stack: "Docker · Next.js · WebSockets",
+    tags: ["Docker", "Next.js", "WebSockets", "Security", "Infra"],
     links: [
       { label: "Site", href: "#" }, // TODO: real link
       { label: "GitHub", href: "#" }, // TODO
     ],
+    featured: true,
   },
   {
     name: "Screenshot Brain",
+    accent: "teal",
     meta: "2026",
     blurb:
       "Full-stack semantic search over your screenshots. The interesting part isn't the search — it's the labeled eval harness I built to grade top-3 retrieval accuracy and find where it was quietly failing.",
     metric: "Labeled eval harness · top-3 retrieval",
-    stack: "Next.js · Supabase/pgvector · Claude vision",
+    tags: ["Next.js", "pgvector", "Claude vision", "Evals", "Search"],
     links: [
       { label: "GitHub", href: "#" }, // TODO
       { label: "Write-up", href: "/writing/screenshot-brain-eval/" },
     ],
+    featured: true,
   },
   {
     name: "Adaptive KV-Cache Compression",
+    accent: "plum",
     meta: "In progress",
     blurb:
       "A custom decode loop with pluggable KV-cache eviction policies, benchmarked against published baselines run under identical instrumentation. In progress — I'll publish the result either way, including a clean negative one.",
     metric: "Inference systems · honest baselines",
-    stack: "PyTorch · transformers",
+    tags: ["PyTorch", "Transformers", "Inference", "LLMs", "Systems"],
     links: [{ label: "GitHub", href: "#" }], // TODO
+    featured: true,
   },
   {
     name: "PhishGuard AI",
+    accent: "gold",
     meta: "2024 – 2025 · Microsoft Imagine Cup",
     blurb:
       "End-to-end ML threat-detection pipeline: feature engineering on URL and email metadata, a scikit-learn classifier, an evaluation pipeline, and a real-time alerting dashboard. Led a 5-person team through the full lifecycle.",
     metric: "-45% test-set breach rate",
-    stack: "scikit-learn · Python",
+    tags: ["scikit-learn", "Python", "ML", "Security"],
     links: [{ label: "GitHub", href: "#" }], // TODO
+    featured: true,
   },
 ];
 
@@ -153,3 +185,24 @@ export const now = {
     "Getting this site to three real posts.",
   ],
 };
+
+/* --- Beyond the code: the personal bits. Make these genuinely yours. --- */
+export const interests: { emoji: string; label: string; note: string }[] = [
+  {
+    emoji: "♟️",
+    label: "Chess",
+    note: "Years of competitive play. It's where I first fell for search, pruning, and knowing when to stop calculating.",
+  },
+  {
+    emoji: "🛡️",
+    label: "Security & CTFs",
+    note: "The reason CyberMinds exists — I wanted the sandbox I wished I'd had.",
+  },
+  {
+    emoji: "🧠",
+    label: "ML systems",
+    note: "Inference, evals, and making models measurably better instead of just demoable.",
+  },
+  // TODO: add 1–2 genuinely personal ones so this doesn't read like a resume
+  // (music you love, a sport, something you're reading, where you grew up...).
+];

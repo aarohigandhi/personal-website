@@ -1,170 +1,172 @@
 import Link from "next/link";
-import { site, about, projects, posts, now, honors } from "@/lib/content";
+import {
+  site,
+  hero,
+  quickFacts,
+  projects,
+  posts,
+  now,
+} from "@/lib/content";
 import { formatDate } from "@/lib/format";
-
-/* Small monospace section label — the only "chrome" on the page. */
-function Label({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="mb-6 font-mono text-xs uppercase tracking-[0.18em] text-faint">
-      {children}
-    </h2>
-  );
-}
-
-function Section({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section className="border-t border-rule py-12">
-      <Label>{label}</Label>
-      {children}
-    </section>
-  );
-}
-
-/* Plain, underline-on-hover link used throughout. */
-function A({ href, children }: { href: string; children: React.ReactNode }) {
-  const external = href.startsWith("http");
-  const cls =
-    "text-accent underline decoration-1 underline-offset-2 hover:decoration-2";
-  return external ? (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
-      {children}
-    </a>
-  ) : (
-    <Link href={href} className={cls}>
-      {children}
-    </Link>
-  );
-}
+import { ProjectCard } from "@/components/ProjectCard";
 
 export default function Home() {
+  const featured = projects.filter((p) => p.featured);
   const published = posts
     .filter((p) => p.published)
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, 3);
 
   return (
-    <main className="mx-auto max-w-[680px] px-6 py-20 sm:py-28">
-      {/* Masthead: name + one line. */}
-      <header className="pb-4">
-        <h1 className="font-serif text-4xl font-medium tracking-[-0.02em] text-ink sm:text-5xl">
-          {site.name}
-        </h1>
-        <p className="mt-3 text-lg text-muted">{site.tagline}</p>
-      </header>
+    <main>
+      {/* ---------------- Hero ---------------- */}
+      <section className="relative overflow-hidden">
+        <div className="aurora" />
+        <div className="mx-auto max-w-5xl px-5 pb-16 pt-20 sm:pt-28">
+          <p className="fade-up font-mono text-sm text-accent">
+            {hero.greeting} <span className="inline-block">👋</span>
+          </p>
+          <h1
+            className="fade-up mt-4 max-w-3xl font-serif text-4xl font-medium leading-[1.08] tracking-[-0.025em] text-ink sm:text-6xl"
+            style={{ animationDelay: "0.05s" }}
+          >
+            {hero.headline}
+          </h1>
+          <p
+            className="fade-up mt-6 max-w-2xl text-lg leading-relaxed text-muted"
+            style={{ animationDelay: "0.1s" }}
+          >
+            {hero.blurb}
+          </p>
 
-      {/* About */}
-      <Section label="About">
-        <div className="space-y-4 text-ink/90">
-          {about.map((line, i) => (
-            <p key={i}>{line}</p>
+          <div
+            className="fade-up mt-7 flex flex-wrap gap-2"
+            style={{ animationDelay: "0.15s" }}
+          >
+            {quickFacts.map((f) => (
+              <span
+                key={f}
+                className="rounded-full border border-rule bg-raised px-3 py-1 font-mono text-xs text-muted"
+              >
+                {f}
+              </span>
+            ))}
+          </div>
+
+          <div
+            className="fade-up mt-9 flex flex-wrap items-center gap-3"
+            style={{ animationDelay: "0.2s" }}
+          >
+            <Link
+              href="/projects"
+              className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-paper transition-transform hover:-translate-y-0.5"
+            >
+              See my work
+            </Link>
+            <Link
+              href="/writing"
+              className="rounded-full border border-rule bg-raised px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent/50"
+            >
+              Read my writing
+            </Link>
+            <a
+              href={`mailto:${site.email}`}
+              className="px-2 text-sm font-medium text-muted underline decoration-1 underline-offset-4 hover:text-accent"
+            >
+              Get in touch
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- Featured work ---------------- */}
+      <section className="mx-auto max-w-5xl px-5 py-12">
+        <SectionHeading kicker="Selected work" href="/projects" cta="All projects" />
+        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+          {featured.map((p) => (
+            <ProjectCard key={p.name} project={p} />
           ))}
         </div>
-      </Section>
+      </section>
 
-      {/* Selected work */}
-      <Section label="Selected work">
-        <ul className="space-y-9">
-          {projects.map((p) => (
-            <li key={p.name}>
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 className="font-serif text-xl text-ink">{p.name}</h3>
-                <span className="font-mono text-xs text-faint">{p.metric}</span>
-              </div>
-              {p.meta && (
-                <p className="mt-0.5 font-mono text-xs text-faint">{p.meta}</p>
-              )}
-              <p className="mt-1.5 text-muted">{p.blurb}</p>
-              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-                {p.stack && (
-                  <span className="font-mono text-xs text-faint">{p.stack}</span>
-                )}
-                {p.links.map((l) => (
-                  <A key={l.label} href={l.href}>
-                    {l.label}
-                  </A>
-                ))}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      {/* Writing — the point of the site. */}
-      <Section label="Writing">
+      {/* ---------------- Latest writing ---------------- */}
+      <section className="mx-auto max-w-5xl px-5 py-12">
+        <SectionHeading kicker="Writing" href="/writing" cta="All writing" />
         {published.length === 0 ? (
-          <p className="text-muted">First essay is on the way.</p>
+          <p className="mt-6 text-muted">First essay is on the way.</p>
         ) : (
-          <ul className="space-y-6">
+          <ul className="mt-6 divide-y divide-rule">
             {published.map((post) => (
               <li key={post.slug}>
                 <Link
                   href={`/writing/${post.slug}/`}
-                  className="group block"
+                  className="group flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
                 >
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                    <h3 className="font-serif text-xl text-ink transition-colors group-hover:text-accent">
+                  <div className="sm:flex-1">
+                    <h3 className="font-serif text-lg text-ink transition-colors group-hover:text-accent">
                       {post.title}
                     </h3>
-                    <time className="font-mono text-xs text-faint">
-                      {formatDate(post.date)}
-                    </time>
+                    <p className="mt-0.5 text-sm text-muted">{post.summary}</p>
                   </div>
-                  <p className="mt-1 text-muted">{post.summary}</p>
+                  <time className="font-mono text-xs text-faint">
+                    {formatDate(post.date)}
+                  </time>
                 </Link>
               </li>
             ))}
           </ul>
         )}
-      </Section>
+      </section>
 
-      {/* Now */}
-      <Section label="Now">
-        <ul className="space-y-2 text-ink/90">
-          {now.items.map((item, i) => (
-            <li key={i} className="flex gap-3">
-              <span className="mt-[0.6em] h-1 w-1 shrink-0 rounded-full bg-faint" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 font-mono text-xs text-faint">
-          Updated {now.updated}
-        </p>
-      </Section>
-
-      {/* Honors — one compact line. */}
-      <Section label="Honors">
-        <p className="text-muted">
-          {honors.map((h, i) => (
-            <span key={h}>
-              {i > 0 && <span className="text-faint"> · </span>}
-              {h}
-            </span>
-          ))}
-        </p>
-      </Section>
-
-      {/* Contact — plain links, no form. */}
-      <Section label="Contact">
-        <div className="flex flex-wrap gap-x-6 gap-y-2">
-          <A href={`mailto:${site.email}`}>Email</A>
-          <A href={site.socials.github}>GitHub</A>
-          <A href={site.socials.linkedin}>LinkedIn</A>
-          <A href={site.socials.resume}>Résumé</A>
+      {/* ---------------- Now + CTA ---------------- */}
+      <section className="mx-auto max-w-5xl px-5 py-12">
+        <div className="grid gap-6 rounded-2xl border border-rule bg-raised p-7 sm:grid-cols-[1fr_auto] sm:items-center">
+          <div>
+            <SectionHeading kicker={`Now · ${now.updated}`} />
+            <ul className="mt-5 space-y-2">
+              {now.items.map((item, i) => (
+                <li key={i} className="flex gap-3 text-[0.95rem] text-ink/90">
+                  <span className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Link
+            href="/about"
+            className="justify-self-start rounded-full border border-rule bg-paper px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent/50 sm:justify-self-end"
+          >
+            More about me →
+          </Link>
         </div>
-      </Section>
-
-      <footer className="border-t border-rule pt-8 text-sm text-faint">
-        <p>
-          © {new Date().getFullYear()} {site.name}. Built with Next.js — plain
-          HTML, no tracking.
-        </p>
-      </footer>
+      </section>
     </main>
+  );
+}
+
+function SectionHeading({
+  kicker,
+  href,
+  cta,
+}: {
+  kicker: string;
+  href?: string;
+  cta?: string;
+}) {
+  return (
+    <div className="flex items-center justify-between gap-4">
+      <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-accent">
+        <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+        {kicker}
+      </h2>
+      {href && cta && (
+        <Link
+          href={href}
+          className="whitespace-nowrap text-sm text-muted transition-colors hover:text-accent"
+        >
+          {cta} →
+        </Link>
+      )}
+    </div>
   );
 }

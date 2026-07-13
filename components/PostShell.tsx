@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { posts, site } from "@/lib/content";
+import { posts } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 
 /* Wraps every essay: same column, title header, and prose styles.
@@ -14,15 +14,15 @@ export function PostShell({
   const post = posts.find((p) => p.slug === slug);
 
   return (
-    <main className="mx-auto max-w-[680px] px-6 py-16 sm:py-20">
+    <main className="mx-auto max-w-[680px] px-5 py-14 sm:py-16">
       <Link
-        href="/"
+        href="/writing/"
         className="font-mono text-xs text-faint hover:text-accent"
       >
-        ← {site.name}
+        ← Writing
       </Link>
 
-      <article className="mt-10">
+      <article className="mt-8">
         <header className="mb-10">
           {post && (
             <time className="font-mono text-xs uppercase tracking-[0.15em] text-faint">
