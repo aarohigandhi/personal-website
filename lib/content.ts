@@ -24,8 +24,8 @@ export const site = {
   location: "Seattle, WA",
   socials: {
     github: "https://github.com/aarohigandhi",
-    linkedin: "https://www.linkedin.com/in/aarohigandhi/", // TODO: confirm handle
-    resume: "/resume.pdf", // TODO: host the canonical resume (minus the TA line)
+    linkedin: "https://www.linkedin.com/in/aarohigandhi",
+    resume: "/resume.pdf", // TODO: drop the canonical resume PDF into /public/resume.pdf
   },
 } as const;
 
@@ -35,7 +35,7 @@ export const about: string[] = [
   "i entered uw at 15 through the robinson center's early entrance program, where i study computer science.",
   "at 15 i also founded cyberminds, an ai + cybersecurity learning platform that 5,000+ people now use across 12 countries. since then i've shipped semantic search with a real eval harness, an ml threat-detection pipeline, and an ios app.",
   "lately i've been obsessed with agentic and retrieval systems — getting models to actually do things, not just answer. i love building things that help people, companies, and systems.",
-  "i've played chess seriously for years. it's where i first fell for search — and knowing when to stop calculating and just move.",
+  "mostly i try to build things that are simple — which, funny enough, is usually the hardest thing to do.",
 ];
 
 export type Accent = "rust" | "teal" | "plum" | "gold";
@@ -67,10 +67,7 @@ export const projects: Project[] = [
       "full-stack semantic search over your screenshots — the graveyard of information nobody can search. the interesting part isn't the search, it's the labeled eval harness i built to grade top-3 retrieval accuracy and find where it was quietly failing.",
     metric: "labeled eval harness · top-3 retrieval",
     tags: ["Next.js", "pgvector", "Claude vision", "evals", "search"],
-    links: [
-      { label: "github", href: "#" }, // TODO
-      { label: "write-up", href: "/writing/screenshot-brain-eval/" },
-    ],
+    links: [{ label: "write-up", href: "/writing/screenshot-brain-eval/" }],
     featured: true,
   },
   {
@@ -81,10 +78,7 @@ export const projects: Project[] = [
       "an ai + cybersecurity learning platform: browser-based linux terminals on docker, ctf challenges, and courses. i handle the isolation, resource limits, and teardown so thousands of strangers can get a shell without breaking anything that matters.",
     metric: "5,000+ monthly users · 12 countries",
     tags: ["Docker", "Next.js", "WebSockets", "security", "infra"],
-    links: [
-      { label: "site", href: "#" }, // TODO
-      { label: "github", href: "#" }, // TODO
-    ],
+    links: [{ label: "site", href: "#" }], // TODO: real link
     featured: true,
   },
   {
@@ -95,7 +89,7 @@ export const projects: Project[] = [
       "a computer-vision tool built at dubhacks to help with everyday sight tasks. built and demoed end-to-end in a weekend with a small team.", // TODO: sharpen what it actually does
     metric: "2nd of 200+ teams",
     tags: ["computer vision", "Python", "health"],
-    links: [{ label: "github", href: "#" }], // TODO
+    links: [],
     featured: true,
   },
   {
@@ -106,7 +100,7 @@ export const projects: Project[] = [
       "end-to-end ml threat-detection pipeline: feature engineering on url and email metadata, a scikit-learn classifier, an evaluation pipeline, and a real-time alerting dashboard. led a 5-person team through the full lifecycle.",
     metric: "-45% test-set breach rate",
     tags: ["scikit-learn", "Python", "ML", "security"],
-    links: [{ label: "github", href: "#" }], // TODO
+    links: [],
     featured: false,
   },
   {
@@ -117,7 +111,7 @@ export const projects: Project[] = [
       "a custom decode loop with pluggable kv-cache eviction policies, benchmarked against published baselines under identical instrumentation. my move into inference systems — i'll publish the result either way, including a clean negative one.",
     metric: "coming soon · inference systems",
     tags: ["PyTorch", "transformers", "inference", "LLMs"],
-    links: [{ label: "github", href: "#" }], // TODO
+    links: [],
     featured: false,
   },
 ];
@@ -132,6 +126,14 @@ export type Post = {
 
 /* --- Writing: the point of the site. Three real posts is the goal. --- */
 export const posts: Post[] = [
+  {
+    slug: "build-more-flatter-less",
+    title: "build more, flatter less",
+    summary:
+      "on why the world needs more builders, blunter feedback, and simpler things.",
+    date: "2026-07-14",
+    published: true,
+  },
   {
     slug: "screenshot-brain-eval",
     title: "How I measured whether my semantic search was actually good",
@@ -178,23 +180,3 @@ export const now = {
   ],
 };
 
-/* --- Beyond the code: the personal bits. Make these genuinely yours. --- */
-export const interests: { emoji: string; label: string; note: string }[] = [
-  {
-    emoji: "♟️",
-    label: "chess",
-    note: "years of competitive play. where i first fell for search, pruning, and knowing when to stop calculating.",
-  },
-  {
-    emoji: "🛡️",
-    label: "security & ctfs",
-    note: "the reason cyberminds exists — i wanted the sandbox i wished i'd had.",
-  },
-  {
-    emoji: "🧠",
-    label: "ml systems",
-    note: "inference, evals, and making models measurably better instead of just demoable.",
-  },
-  // TODO: add 1–2 genuinely personal ones so this doesn't read like a resume
-  // (music you love, a sport, something you're reading, where you grew up...).
-];

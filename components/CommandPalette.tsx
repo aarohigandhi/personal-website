@@ -21,10 +21,9 @@ export function CommandPalette() {
 
   const items = useMemo<Item[]>(() => {
     const pages: Item[] = [
-      { label: "home", href: "/", hint: "page" },
+      { label: "home / about", href: "/", hint: "page", keywords: "about" },
       { label: "projects", href: "/projects/", hint: "page" },
       { label: "writing", href: "/writing/", hint: "page" },
-      { label: "about", href: "/about/", hint: "page" },
     ];
     const proj: Item[] = projects.map((p) => {
       const ext = p.links.find((l) => l.href.startsWith("http"));

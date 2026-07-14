@@ -44,13 +44,13 @@ export default function ProjectsPage() {
 
             <p className="mt-3 text-text">{p.blurb}</p>
 
-            <p className="mt-3 text-sm text-faint">{p.tags.join(" · ")}</p>
-
-            <div className="mt-2 flex flex-wrap gap-x-5 text-sm">
-              {p.links.map((l) => (
-                <ProjectLink key={l.label} label={l.label} href={l.href} />
-              ))}
-            </div>
+            {p.links.length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-x-5 text-sm">
+                {p.links.map((l) => (
+                  <ProjectLink key={l.label} label={l.label} href={l.href} />
+                ))}
+              </div>
+            )}
           </article>
         ))}
       </div>

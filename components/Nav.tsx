@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { site } from "@/lib/content";
 
 const tabs = [
   { href: "/projects", label: "projects" },
   { href: "/writing", label: "writing" },
-  { href: "/about", label: "about" },
 ];
 
 function isActive(pathname: string, href: string) {
@@ -23,7 +23,7 @@ export function Nav() {
           href="/"
           className="text-muted transition-colors hover:text-bright"
         >
-          <span className="text-link">♞</span> aarohi gandhi
+          <span className="text-link">♟</span> aarohi gandhi
         </Link>
 
         <nav className="flex items-center gap-4 sm:gap-5">
@@ -39,6 +39,12 @@ export function Nav() {
               {t.label}
             </Link>
           ))}
+          <a
+            href={site.socials.resume}
+            className="text-muted transition-colors hover:text-bright"
+          >
+            resume
+          </a>
           <button
             type="button"
             aria-label="Open command menu"
