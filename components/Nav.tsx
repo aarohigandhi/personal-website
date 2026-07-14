@@ -26,7 +26,7 @@ export function Nav() {
           <span className="text-link">♞</span> aarohi gandhi
         </Link>
 
-        <nav className="flex items-center gap-5">
+        <nav className="flex items-center gap-4 sm:gap-5">
           {tabs.map((t) => (
             <Link
               key={t.href}
@@ -39,6 +39,14 @@ export function Nav() {
               {t.label}
             </Link>
           ))}
+          <button
+            type="button"
+            aria-label="Open command menu"
+            onClick={() => window.dispatchEvent(new Event("cmdk:open"))}
+            className="rounded border border-rule px-1.5 py-0.5 text-xs text-faint transition-colors hover:border-link/50 hover:text-link"
+          >
+            ⌘K
+          </button>
         </nav>
       </div>
     </header>

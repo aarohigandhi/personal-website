@@ -1,61 +1,57 @@
 import Link from "next/link";
+import { Fragment } from "react";
 
 /*
-  Home is deliberately simple: a short first-person intro, a small credo, and
-  one quiet line of links. Everything else lives behind the nav. Let the
-  writing carry it.
+  Home as a small aligned index — leaning on what monospace is good at
+  (columns), not a prose paragraph. Simple, scannable, and its own thing.
 */
+const rows: { k: string; v: React.ReactNode }[] = [
+  {
+    k: "now",
+    v: (
+      <>
+        founder of <span className="text-bright">cyberminds</span> (5,000+ users,
+        12 countries). moving into agentic + inference systems.
+      </>
+    ),
+  },
+  {
+    k: "built",
+    v: (
+      <>
+        semantic search with a real eval harness · an ml threat-detection
+        pipeline · a shipped ios app.
+      </>
+    ),
+  },
+  {
+    k: "me",
+    v: (
+      <>
+        entered uw at 15, studying cs. chess player. i build things to
+        understand them.
+      </>
+    ),
+  },
+];
+
 export default function Home() {
   return (
-    <main className="mx-auto max-w-2xl px-6 pb-10 pt-8 sm:pt-14">
-      <div className="fade-in space-y-5 leading-[1.9]">
-        <p className="text-lg text-bright">
+    <main className="mx-auto max-w-2xl px-6 pb-10 pt-8 sm:pt-16">
+      <div className="fade-in">
+        <h1 className="text-xl text-bright">aarohi gandhi</h1>
+        <p className="mt-1 text-muted">
           i build systems where ML meets the real world.
         </p>
 
-        <p>
-          i entered uw at 15 through the{" "}
-          <a
-            href="https://robinsoncenter.uw.edu/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link"
-          >
-            robinson center
-          </a>
-          , studying computer science. at 15 i also founded{" "}
-          <span className="text-bright">cyberminds</span>, an ai + cybersecurity
-          learning platform that 5,000+ people use across 12 countries.
-        </p>
-
-        <p>
-          lately i&apos;ve been obsessed with agentic and retrieval systems —
-          getting models to actually <span className="text-bright">do</span>{" "}
-          things, not just answer.
-        </p>
-
-        {/* credo */}
-        <p className="pt-3">
-          <span className="text-muted">how i work — </span>
-          <span className="text-hot">build it. measure it. improve it.</span>
-        </p>
-
-        {/* one quiet line of links */}
-        <p className="pt-4 text-muted">
-          here&apos;s my{" "}
-          <Link href="/projects" className="link">
-            work
-          </Link>
-          , my{" "}
-          <Link href="/writing" className="link">
-            writing
-          </Link>
-          , and{" "}
-          <Link href="/about" className="link">
-            more about me
-          </Link>
-          .
-        </p>
+        <dl className="mt-10 grid grid-cols-[4rem_1fr] gap-x-5 gap-y-4 leading-[1.8] sm:grid-cols-[5rem_1fr]">
+          {rows.map((r) => (
+            <Fragment key={r.k}>
+              <dt className="text-faint">{r.k}</dt>
+              <dd className="text-text">{r.v}</dd>
+            </Fragment>
+          ))}
+        </dl>
       </div>
     </main>
   );

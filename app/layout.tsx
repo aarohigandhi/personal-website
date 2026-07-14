@@ -4,6 +4,7 @@ import "./globals.css";
 import { site } from "@/lib/content";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { CommandPalette } from "@/components/CommandPalette";
 
 // One typeface, monospace — the whole voice of the site.
 const mono = JetBrains_Mono({
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Nav />
         <div className="flex-1">{children}</div>
         <Footer />
+        <CommandPalette />
       </body>
     </html>
   );
