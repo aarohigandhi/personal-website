@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { site } from "@/lib/content";
 
-// Inline colors (not CSS classes) so they render even with a stale cached
-// stylesheet. Soft pastels tuned for a dark background.
-const C = { blue: "#89b4fa", yellow: "#f9e2af", green: "#a6e3a1" };
+// Two greens: "build" words in bright green, the rest in soft lime. Inline so
+// they render even with a stale cached stylesheet.
+const GREEN = "#7fd99a";
+const LIME = "#d4f79b";
+const C = { blue: LIME, yellow: LIME, green: GREEN };
 
 function Word({ color, children }: { color: string; children: string }) {
-  return <strong style={{ color }}>{children}</strong>;
+  return <span style={{ color }}>{children}</span>;
 }
 
 export default function Home() {
