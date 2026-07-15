@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { site } from "@/lib/content";
 
-// Inline colors (not CSS classes) so they render even if the browser has an
-// old stylesheet cached. Three colors: light blue, bright yellow, light green.
-const C = { blue: "#7fb4f0", yellow: "#f5d94a", green: "#7fd99a" };
+// Inline colors (not CSS classes) so they render even with a stale cached
+// stylesheet. Soft pastels tuned for a dark background.
+const C = { blue: "#89b4fa", yellow: "#f9e2af", green: "#a6e3a1" };
 
 function Word({ color, children }: { color: string; children: string }) {
   return <strong style={{ color }}>{children}</strong>;
@@ -21,9 +21,9 @@ export default function Home() {
         </div>
 
         <p>
-          started college at <Word color={C.yellow}>fifteen</Word> (applied math
-          and cs at uw), and building things is pretty much all i&apos;ve done
-          since.
+          i dropped out of high school to start college at{" "}
+          <Word color={C.yellow}>fifteen</Word> (applied math and cs at uw), and
+          building things is pretty much all i&apos;ve done since.
         </p>
 
         <p>
@@ -39,9 +39,9 @@ export default function Home() {
         </p>
 
         <p>
-          when i&apos;m not building i&apos;m usually playing{" "}
-          <Word color={C.yellow}>chess</Word>, or taking apart a new programming
-          language to see how it thinks.
+          lately i&apos;ve been exploring the frontier of{" "}
+          <Word color={C.yellow}>ml</Word>, especially how to make models faster
+          and actually usable.
         </p>
 
         <p className="text-muted">

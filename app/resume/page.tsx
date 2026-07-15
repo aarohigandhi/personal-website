@@ -237,7 +237,6 @@ export default function ResumePage() {
         <Section title="Honors" color={HUE.sage}>
           <Card color={HUE.sage}>
             <ul className="space-y-1.5 text-[0.95rem]">
-              <li>Competitive chess player since 2020.</li>
               <li>DubHacks 2024, 2nd place of 200+ teams.</li>
               <li>
                 MIT Beaver Works Summer Institute 2023: hardware security and
