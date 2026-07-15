@@ -57,7 +57,7 @@ export const projects: Project[] = [
       "full stack semantic search over your screenshots, the graveyard of information nobody can search. the interesting part isn't the search, it's the labeled eval harness i built to grade top 3 retrieval accuracy and find where it was quietly failing.",
     metric: "labeled eval harness · top 3 retrieval",
     tags: ["Next.js", "pgvector", "Claude vision", "evals", "search"],
-    links: [],
+    links: [{ label: "site", href: "https://cacheapp.vercel.app/" }],
     featured: true,
   },
   {
@@ -68,7 +68,7 @@ export const projects: Project[] = [
       "an ai + cybersecurity learning platform: browser based linux terminals on docker, ctf challenges, and courses. i handle the isolation, resource limits, and teardown so thousands of strangers can get a shell without breaking anything that matters.",
     metric: "5,000+ monthly users · 12 countries",
     tags: ["Docker", "Next.js", "WebSockets", "security", "infra"],
-    links: [{ label: "site", href: "#" }], // TODO: real link
+    links: [{ label: "site", href: "https://cyber-minds.github.io/" }],
     featured: true,
   },
   {
