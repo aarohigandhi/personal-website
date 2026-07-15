@@ -3,11 +3,9 @@ import { site } from "@/lib/content";
 
 // Two greens: "build" words in bright green, the rest in soft lime. Inline so
 // they render even with a stale cached stylesheet.
-// Colors mean something: green = building, blue = what I've built, lime = my focus.
-const BLUE = "#7fb4f0";
 const GREEN = "#7fd99a";
 const LIME = "#d4f79b";
-const C = { blue: BLUE, yellow: LIME, green: GREEN };
+const C = { blue: LIME, yellow: LIME, green: GREEN };
 
 function Word({ color, children }: { color: string; children: string }) {
   return <span style={{ color }}>{children}</span>;
@@ -26,8 +24,8 @@ export default function Home() {
 
         <p>
           i dropped out of high school to start college at{" "}
-          <strong className="text-bright">fifteen</strong>{" "}(applied math and
-          cs at uw), and building things is pretty much all i&apos;ve done since.
+          <Word color={C.yellow}>fifteen</Word>{" "}(applied math and cs at uw),
+          and building things is pretty much all i&apos;ve done since.
         </p>
 
         <p>
