@@ -70,14 +70,22 @@ a.link:hover,
   color: var(--link-hover);
 }
 
-/* Highlighter mark — one soft translucent color behind the important words,
-   so the whole page reads as a single system instead of a rainbow. */
+/* Highlighter marks — a small harmonized palette (muted teal / amber / rose)
+   so it reads colorful but curated, never a clashing rainbow. */
 .hl {
   border-radius: 3px;
   padding: 0.02em 0.28em;
   font-weight: 700;
-  background: color-mix(in srgb, var(--link) 20%, transparent);
   color: var(--bright);
+}
+.hl-a {
+  background: color-mix(in srgb, #57b8a8 26%, transparent);
+}
+.hl-b {
+  background: color-mix(in srgb, #d8a94c 26%, transparent);
+}
+.hl-c {
+  background: color-mix(in srgb, #df8b87 26%, transparent);
 }
 
 /* Gentle entrance — subtle, not flashy. Works with JS off, ends visible. */

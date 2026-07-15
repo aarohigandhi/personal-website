@@ -7,17 +7,34 @@ export const metadata: Metadata = {
   description: `Resume of ${site.name}.`,
 };
 
+// Harmonized muted palette, one hue per section.
+const HUE = {
+  teal: "#57b8a8",
+  amber: "#d8a94c",
+  rose: "#df8b87",
+  violet: "#ab9ce6",
+  sage: "#90c89b",
+};
+
 function Section({
   title,
+  color,
   children,
 }: {
   title: string;
+  color: string;
   children: React.ReactNode;
 }) {
   return (
     <section className="mt-10">
-      <h2 className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-link">
-        <span className="inline-block h-1.5 w-1.5 rounded-full bg-link" />
+      <h2
+        className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em]"
+        style={{ color }}
+      >
+        <span
+          className="inline-block h-1.5 w-1.5 rounded-full"
+          style={{ backgroundColor: color }}
+        />
         {title}
       </h2>
       <div className="space-y-3">{children}</div>
@@ -25,10 +42,20 @@ function Section({
   );
 }
 
-/* Each item is its own boxed card. */
-function Card({ children }: { children: React.ReactNode }) {
+function Card({
+  color,
+  children,
+}: {
+  color: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="rounded-lg border border-rule bg-bg2 p-5">{children}</div>
+    <div
+      className="rounded-lg border border-rule bg-bg2 p-5"
+      style={{ borderLeft: `3px solid ${color}` }}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -37,14 +64,16 @@ function Entry({
   meta,
   stack,
   bullets,
+  color,
 }: {
   title: string;
   meta?: string;
   stack?: string;
   bullets: string[];
+  color: string;
 }) {
   return (
-    <Card>
+    <Card color={color}>
       <div className="flex flex-wrap items-baseline justify-between gap-x-3">
         <h3 className="font-bold text-bright">{title}</h3>
         {meta && <span className="text-sm text-faint">{meta}</span>}
@@ -53,7 +82,10 @@ function Entry({
       <ul className="mt-3 space-y-1.5">
         {bullets.map((b, i) => (
           <li key={i} className="flex gap-2.5 text-[0.95rem]">
-            <span className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-link" />
+            <span
+              className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full"
+              style={{ backgroundColor: color }}
+            />
             <span>{b}</span>
           </li>
         ))}
@@ -78,15 +110,16 @@ export default function ResumePage() {
             {site.email}
           </a>
           <a href={site.socials.github} target="_blank" rel="noopener noreferrer" className="link">
-            github.com/aarohigandhi
+            github
           </a>
           <a href={site.socials.linkedin} target="_blank" rel="noopener noreferrer" className="link">
-            linkedin.com/in/aarohigandhi
+            linkedin
           </a>
         </p>
 
-        <Section title="Education">
+        <Section title="Education" color={HUE.teal}>
           <Entry
+            color={HUE.teal}
             title="University of Washington, Seattle"
             meta="Expected Jun 2028"
             stack="B.S. Applied Mathematics with Computer Science (Paul G. Allen School of CS&E) · GPA 3.80 / 4.00"
@@ -97,8 +130,9 @@ export default function ResumePage() {
           />
         </Section>
 
-        <Section title="Projects">
+        <Section title="Projects" color={HUE.amber}>
           <Entry
+            color={HUE.amber}
             title="Adaptive KV Cache Compression for Long Context LLM Inference"
             meta="2026"
             stack="Python · PyTorch · Triton · GPU profiling · CUDA memory"
@@ -109,6 +143,7 @@ export default function ResumePage() {
             ]}
           />
           <Entry
+            color={HUE.amber}
             title="Screenshot Brain, Semantic Screenshot Search"
             meta="2026"
             stack="Next.js · React · Supabase (Postgres, pgvector) · Claude API · embeddings"
@@ -118,6 +153,7 @@ export default function ResumePage() {
             ]}
           />
           <Entry
+            color={HUE.amber}
             title="Concurrent Scheduling Backend"
             meta="2026"
             stack="Python · SQL · ACID transactions · two phase locking"
@@ -127,6 +163,7 @@ export default function ResumePage() {
             ]}
           />
           <Entry
+            color={HUE.amber}
             title="PhishGuard AI, Microsoft Imagine Cup"
             meta="2024 to 2025"
             stack="Python · NLP · scikit learn · PostgreSQL · REST APIs"
@@ -135,6 +172,7 @@ export default function ResumePage() {
             ]}
           />
           <Entry
+            color={HUE.amber}
             title="Also"
             bullets={[
               "PillPall, iOS medication app shipped solo to the App Store (Swift, SwiftUI).",
@@ -145,8 +183,9 @@ export default function ResumePage() {
           />
         </Section>
 
-        <Section title="Experience">
+        <Section title="Experience" color={HUE.rose}>
           <Entry
+            color={HUE.rose}
             title="Founder and Lead Engineer, CyberMinds"
             meta="2022 to Present"
             stack="Production Python platform on Linux · 5,000+ monthly active users across 12 countries · 50+ contributors"
@@ -157,6 +196,7 @@ export default function ResumePage() {
             ]}
           />
           <Entry
+            color={HUE.rose}
             title="Founder, Blu Birds"
             meta="2023 to Present"
             stack="Technology access initiative for elderly communities · Seattle, WA"
@@ -166,50 +206,51 @@ export default function ResumePage() {
           />
         </Section>
 
-        <Section title="Technical Skills">
-          <Card>
-          <div className="space-y-2 text-[0.95rem]">
-            <p>
-              <span className="font-bold text-bright">Languages:</span> Python
-              (primary, expert), SQL (advanced), Java, TypeScript and
-              JavaScript, R, OCaml, Bash.
-            </p>
-            <p>
-              <span className="font-bold text-bright">Systems:</span> Linux,
-              concurrency and locking, memory management, performance profiling,
-              latency measurement, ACID transactions, Docker, Git, GitHub
-              Actions, CI/CD, REST APIs, PostgreSQL, SQLite.
-            </p>
-            <p>
-              <span className="font-bold text-bright">ML and numerics:</span>{" "}
-              PyTorch, Triton, HuggingFace Transformers, CUDA memory profiling,
-              NumPy, pandas, scikit learn, embeddings and vector search,
-              evaluation harness design.
-            </p>
-            <p>
-              <span className="font-bold text-bright">Mathematics:</span> Linear
-              algebra, applied probability, statistical inference, discrete
-              math, combinatorics, linear programming and optimization.
-            </p>
-          </div>
+        <Section title="Technical Skills" color={HUE.violet}>
+          <Card color={HUE.violet}>
+            <div className="space-y-2 text-[0.95rem]">
+              <p>
+                <span className="font-bold text-bright">Languages:</span> Python
+                (primary, expert), SQL (advanced), Java, TypeScript and
+                JavaScript, R, OCaml, Bash.
+              </p>
+              <p>
+                <span className="font-bold text-bright">Systems:</span> Linux,
+                concurrency and locking, memory management, performance
+                profiling, latency measurement, ACID transactions, Docker, Git,
+                GitHub Actions, CI/CD, REST APIs, PostgreSQL, SQLite.
+              </p>
+              <p>
+                <span className="font-bold text-bright">ML and numerics:</span>{" "}
+                PyTorch, Triton, HuggingFace Transformers, CUDA memory
+                profiling, NumPy, pandas, scikit learn, embeddings and vector
+                search, evaluation harness design.
+              </p>
+              <p>
+                <span className="font-bold text-bright">Mathematics:</span>{" "}
+                Linear algebra, applied probability, statistical inference,
+                discrete math, combinatorics, linear programming and
+                optimization.
+              </p>
+            </div>
           </Card>
         </Section>
 
-        <Section title="Honors">
-          <Card>
-          <ul className="space-y-1.5 text-[0.95rem]">
-            <li>Competitive chess player since 2020.</li>
-            <li>DubHacks 2024, 2nd place of 200+ teams.</li>
-            <li>
-              MIT Beaver Works Summer Institute 2023: hardware security and
-              embedded systems exploitation.
-            </li>
-            <li>
-              Microsoft Imagine Cup competitor. Harvard AI Bootcamp 2024.
-              Microsoft Certified Cybersecurity Professional. Congressional Gold
-              Volunteer Service Award, 400+ hours.
-            </li>
-          </ul>
+        <Section title="Honors" color={HUE.sage}>
+          <Card color={HUE.sage}>
+            <ul className="space-y-1.5 text-[0.95rem]">
+              <li>Competitive chess player since 2020.</li>
+              <li>DubHacks 2024, 2nd place of 200+ teams.</li>
+              <li>
+                MIT Beaver Works Summer Institute 2023: hardware security and
+                embedded systems exploitation.
+              </li>
+              <li>
+                Microsoft Imagine Cup competitor. Harvard AI Bootcamp 2024.
+                Microsoft Certified Cybersecurity Professional. Congressional
+                Gold Volunteer Service Award, 400+ hours.
+              </li>
+            </ul>
           </Card>
         </Section>
       </div>

@@ -12,32 +12,32 @@ export default function Home() {
         <div>
           <h1 className="text-2xl text-bright">aarohi gandhi</h1>
           <p className="mt-1 text-muted">
-            i <span className="hl">build</span> things people actually
+            i <span className="hl hl-a">build</span> things people actually
             use.
           </p>
         </div>
 
         <p>
-          started college at <span className="hl">fifteen</span>{" "}
+          started college at <span className="hl hl-b">fifteen</span>{" "}
           (applied math and cs at uw), and building things is pretty much all
           i&apos;ve done since.
         </p>
 
         <p>
           as a teenager i founded{" "}
-          <span className="hl">cyberminds</span>, a security learning
+          <span className="hl hl-c">cyberminds</span>, a security learning
           platform <strong className="text-bright">thousands of people</strong>{" "}
           now use across a dozen countries.
         </p>
 
         <p className="text-bright">
           i think the best way to understand something is to{" "}
-          <span className="hl">build it</span>.
+          <span className="hl hl-a">build it</span>.
         </p>
 
         <p>
           when i&apos;m not building i&apos;m usually playing{" "}
-          <span className="hl">chess</span>, or taking apart a new
+          <span className="hl hl-b">chess</span>, or taking apart a new
           programming language to see how it thinks.
         </p>
 
