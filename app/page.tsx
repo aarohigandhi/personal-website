@@ -16,7 +16,11 @@ export default function Home() {
     <main className="mx-auto max-w-2xl px-6 pb-10 pt-8 sm:pt-16">
       <div className="fade-in space-y-5 leading-[1.9]">
         <div>
-          <h1 className="text-2xl text-bright">aarohi gandhi</h1>
+          <h1 className="flex items-center gap-2.5 text-2xl text-bright">
+            <span className="text-[0.55rem] text-link">●</span>
+            aarohi gandhi
+            <span className="text-[0.55rem] text-link">●</span>
+          </h1>
           <p className="mt-1 text-muted">
             i <Word color={C.green}>build</Word> things people actually use.
           </p>
@@ -41,12 +45,17 @@ export default function Home() {
         </p>
 
         <p>
+          i care about clear communication, simple systems, and building things
+          end to end.
+        </p>
+
+        <p>
           lately i&apos;ve been exploring the frontier of{" "}
           <Word color={C.yellow}>ml</Word>, especially how to make models faster
           and actually usable.
         </p>
 
-        <p className="text-muted">
+        <p className="text-sm text-muted">
           right now i&apos;m after{" "}
           <strong className="text-bright">
             software engineering and ml internships

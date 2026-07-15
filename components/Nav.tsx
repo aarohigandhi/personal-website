@@ -21,11 +21,9 @@ export function Nav() {
       <div className="mx-auto flex max-w-3xl items-center justify-between text-sm">
         <Link
           href="/"
-          className="flex items-center gap-2 text-muted transition-colors hover:text-bright"
+          className="text-muted transition-colors hover:text-bright"
         >
-          <span className="text-[0.55rem] text-link">●</span>
-          aarohi gandhi
-          <span className="text-[0.55rem] text-link">●</span>
+          <span className="text-link">♟</span> aarohi gandhi
         </Link>
 
         <nav className="flex items-center gap-4 sm:gap-5">
