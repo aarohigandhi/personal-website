@@ -14,29 +14,19 @@
 
 export const site = {
   name: "Aarohi Gandhi",
-  // One line on what you are, in a breath.
-  tagline: "I build systems where ML meets the real world.",
+  // One line on who you are, in a breath. Builder, ships real things.
+  tagline: "I build things people actually use.",
   description:
-    "Aarohi Gandhi — engineer at UW building agentic and retrieval systems. Entered UW at 15 through the Robinson Center. Founded CyberMinds (5,000+ users, 12 countries). I build things that help people, and write down what broke.",
+    "Aarohi Gandhi builds things people actually use. She started college at 15, founded a cybersecurity education platform that thousands of people rely on across a dozen countries, and works on ML systems and inference. Currently looking for software engineering and ML internships.",
   url: "https://aarohigandhi.com", // TODO: confirm domain before launch
-  // TODO: switch to aarohi@aarohigandhi.com once the domain + forwarding are live.
-  email: "aarohigandhi@hotmail.com",
+  email: "aarohi.gandhi@gmail.com",
   location: "Seattle, WA",
   socials: {
     github: "https://github.com/aarohigandhi",
     linkedin: "https://www.linkedin.com/in/aarohigandhi",
-    resume: "/resume.pdf", // TODO: drop the canonical resume PDF into /public/resume.pdf
+    resume: "/resume/", // on-site resume page (add a downloadable PDF later)
   },
 } as const;
-
-/* --- About: four sentences, max. Who you are, what you build now, what next,
-       and one human line. All defensible. --- */
-export const about: string[] = [
-  "i entered uw at 15 through the robinson center's early entrance program, where i study computer science.",
-  "at 15 i also founded cyberminds, an ai + cybersecurity learning platform that 5,000+ people now use across 12 countries. since then i've shipped semantic search with a real eval harness, an ml threat-detection pipeline, and an ios app.",
-  "lately i've been obsessed with agentic and retrieval systems — getting models to actually do things, not just answer. i love building things that help people, companies, and systems.",
-  "mostly i try to build things that are simple — which, funny enough, is usually the hardest thing to do.",
-];
 
 export type Accent = "rust" | "teal" | "plum" | "gold";
 
@@ -64,18 +54,18 @@ export const projects: Project[] = [
     accent: "teal",
     meta: "2026 · flagship",
     blurb:
-      "full-stack semantic search over your screenshots — the graveyard of information nobody can search. the interesting part isn't the search, it's the labeled eval harness i built to grade top-3 retrieval accuracy and find where it was quietly failing.",
-    metric: "labeled eval harness · top-3 retrieval",
+      "full stack semantic search over your screenshots, the graveyard of information nobody can search. the interesting part isn't the search, it's the labeled eval harness i built to grade top 3 retrieval accuracy and find where it was quietly failing.",
+    metric: "labeled eval harness · top 3 retrieval",
     tags: ["Next.js", "pgvector", "Claude vision", "evals", "search"],
-    links: [{ label: "write-up", href: "/writing/screenshot-brain-eval/" }],
+    links: [],
     featured: true,
   },
   {
     name: "CyberMinds",
     accent: "rust",
-    meta: "2022 – present · founder",
+    meta: "2022 to present · founder",
     blurb:
-      "an ai + cybersecurity learning platform: browser-based linux terminals on docker, ctf challenges, and courses. i handle the isolation, resource limits, and teardown so thousands of strangers can get a shell without breaking anything that matters.",
+      "an ai + cybersecurity learning platform: browser based linux terminals on docker, ctf challenges, and courses. i handle the isolation, resource limits, and teardown so thousands of strangers can get a shell without breaking anything that matters.",
     metric: "5,000+ monthly users · 12 countries",
     tags: ["Docker", "Next.js", "WebSockets", "security", "infra"],
     links: [{ label: "site", href: "#" }], // TODO: real link
@@ -86,7 +76,7 @@ export const projects: Project[] = [
     accent: "plum",
     meta: "2024 · DubHacks",
     blurb:
-      "a computer-vision tool built at dubhacks to help with everyday sight tasks. built and demoed end-to-end in a weekend with a small team.", // TODO: sharpen what it actually does
+      "a computer vision tool built at dubhacks to help with everyday sight tasks. built and demoed end to end in a weekend with a small team.", // TODO: sharpen what it actually does
     metric: "2nd of 200+ teams",
     tags: ["computer vision", "Python", "health"],
     links: [],
@@ -95,20 +85,20 @@ export const projects: Project[] = [
   {
     name: "PhishGuard AI",
     accent: "gold",
-    meta: "2024 – 2025 · Microsoft Imagine Cup",
+    meta: "2024 to 2025 · Microsoft Imagine Cup",
     blurb:
-      "end-to-end ml threat-detection pipeline: feature engineering on url and email metadata, a scikit-learn classifier, an evaluation pipeline, and a real-time alerting dashboard. led a 5-person team through the full lifecycle.",
-    metric: "-45% test-set breach rate",
-    tags: ["scikit-learn", "Python", "ML", "security"],
+      "end to end ml threat detection pipeline: feature engineering on url and email metadata, a scikit learn classifier, an evaluation pipeline, and a real time alerting dashboard. led a 5 person team through the full lifecycle.",
+    metric: "cut breach rate 45% on test data",
+    tags: ["scikit learn", "Python", "ML", "security"],
     links: [],
     featured: false,
   },
   {
-    name: "Adaptive KV-Cache Compression",
+    name: "Adaptive KV Cache Compression",
     accent: "gold",
     meta: "in progress",
     blurb:
-      "a custom decode loop with pluggable kv-cache eviction policies, benchmarked against published baselines under identical instrumentation. my move into inference systems — i'll publish the result either way, including a clean negative one.",
+      "a custom decode loop with pluggable kv cache eviction policies, benchmarked against published baselines under identical instrumentation. my move into inference systems. i'll publish the result either way, including a clean negative one.",
     metric: "coming soon · inference systems",
     tags: ["PyTorch", "transformers", "inference", "LLMs"],
     links: [],
@@ -127,20 +117,20 @@ export type Post = {
 /* --- Writing: the point of the site. Three real posts is the goal. --- */
 export const posts: Post[] = [
   {
-    slug: "build-more-flatter-less",
-    title: "build more, flatter less",
+    slug: "tell-the-truth",
+    title: "the nicest thing you can do is tell the truth",
     summary:
-      "on why the world needs more builders, blunter feedback, and simpler things.",
+      "on honest feedback, why the world needs more builders, and how hard it is to keep things simple.",
     date: "2026-07-14",
     published: true,
   },
   {
     slug: "screenshot-brain-eval",
-    title: "How I measured whether my semantic search was actually good",
+    title: "how i measured whether my semantic search was actually good",
     summary:
-      "Building an eval harness for Screenshot Brain — the part nobody demos.",
+      "building an eval harness for screenshot brain, the part nobody demos.",
     date: "2026-07-12",
-    published: true, // template post — rewrite with your real numbers
+    published: false, // draft: hidden until rewritten with real numbers
   },
   // Planned (add MDX + flip published to true as they're written):
   // {
@@ -159,24 +149,4 @@ export const posts: Post[] = [
   // },
 ];
 
-/* --- Honors: one compact line. Only defensible entries. --- */
-export const honors: string[] = [
-  "DubHacks 2025 — 2nd of 200+ teams",
-  "Microsoft Imagine Cup",
-  "MIT Beaver Works",
-  "Harvard AI Bootcamp",
-  "Congressional Gold Medal",
-  "Blu Birds",
-];
-
-/* --- Now: what you're on this month. Keep the date stamp honest. --- */
-export const now = {
-  updated: "July 2026",
-  items: [
-    "Running adaptive KV-cache compression experiments; publishing the result either way.",
-    "Scaling CyberMinds and writing up how the terminal isolation actually works.",
-    "Reading papers on inference systems and eval design.",
-    "Getting this site to three real posts.",
-  ],
-};
 

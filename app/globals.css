@@ -70,6 +70,16 @@ a.link:hover,
   color: var(--link-hover);
 }
 
+/* Highlighter mark — one soft translucent color behind the important words,
+   so the whole page reads as a single system instead of a rainbow. */
+.hl {
+  border-radius: 3px;
+  padding: 0.02em 0.28em;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--link) 20%, transparent);
+  color: var(--bright);
+}
+
 /* Gentle entrance — subtle, not flashy. Works with JS off, ends visible. */
 @keyframes fade-in {
   from {
@@ -92,17 +102,32 @@ a.link:hover,
 --------------------------------------------------------------------------- */
 .prose {
   color: var(--text);
-  line-height: 1.9;
+  line-height: 1.95;
 }
 .prose > * + * {
-  margin-top: 1.4em;
+  margin-top: 1.55em;
 }
+/* Lede: first paragraph a touch larger to ease you in. */
+.prose > p:first-of-type {
+  font-size: 1.1rem;
+}
+/* Section headers carry the accent + a short rule so the eye finds them. */
 .prose h2 {
-  color: var(--bright);
-  font-size: 1.05rem;
+  color: var(--link);
+  font-size: 1.2rem;
   font-weight: 700;
-  margin-top: 2.4em;
-  margin-bottom: 0.1em;
+  letter-spacing: 0.01em;
+  margin-top: 3em;
+  margin-bottom: 0.8em;
+}
+.prose h2::before {
+  content: "";
+  display: block;
+  width: 2.25rem;
+  height: 2px;
+  background: var(--link);
+  margin-bottom: 1.1rem;
+  opacity: 0.85;
 }
 .prose h3 {
   color: var(--bright);
@@ -126,10 +151,14 @@ a.link:hover,
 .prose ol {
   list-style: decimal;
 }
+/* Pull quotes: big accent lines that break the gray. */
 .prose blockquote {
-  border-left: 2px solid var(--rule);
-  padding-left: 1em;
-  color: var(--muted);
+  margin: 2.4em 0;
+  color: var(--link);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.45;
+  text-wrap: balance;
 }
 .prose code {
   font-size: 0.9em;
@@ -162,4 +191,35 @@ a.link:hover,
   border: none;
   border-top: 1px solid var(--rule);
   margin: 2.4em 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Print: flip the resume to a clean light document. "Download PDF" runs the
+   browser's print-to-PDF, so this is what a saved resume looks like.
+--------------------------------------------------------------------------- */
+@media print {
+  :root {
+    --bg: #ffffff;
+    --bg-2: #ffffff;
+    --text: #1a1a1a;
+    --bright: #000000;
+    --muted: #333333;
+    --faint: #555555;
+    --rule: #cccccc;
+    --link: #0a58ca;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  /* Hide site chrome and anything marked no-print. */
+  body > header,
+  body > footer,
+  .no-print {
+    display: none !important;
+  }
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
 }

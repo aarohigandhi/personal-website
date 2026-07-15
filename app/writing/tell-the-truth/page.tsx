@@ -3,7 +3,7 @@ import { PostShell } from "@/components/PostShell";
 import { posts } from "@/lib/content";
 import Content from "./content.mdx";
 
-const slug = "build-more-flatter-less";
+const slug = "tell-the-truth";
 const post = posts.find((p) => p.slug === slug);
 
 export const metadata: Metadata = {

@@ -11,10 +11,6 @@ export function Footer() {
         <a href={site.socials.github} target="_blank" rel="noopener noreferrer" className="link">
           github
         </a>
-        <span aria-hidden>·</span>
-        <a href={`mailto:${site.email}`} className="link">
-          email
-        </a>
         <span className="ml-auto text-faint">
           © {new Date().getFullYear()}
         </span>
