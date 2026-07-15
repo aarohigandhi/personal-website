@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/content";
-import { PrintButton } from "@/components/PrintButton";
 
 export const metadata: Metadata = {
   title: "resume",
@@ -101,7 +100,13 @@ export default function ResumePage() {
             <h1 className="text-2xl font-bold text-bright">Aarohi Gandhi</h1>
             <p className="text-sm text-faint">Seattle, WA</p>
           </div>
-          <PrintButton />
+          <a
+            href="/resume.pdf"
+            download="Aarohi_Gandhi_Resume.pdf"
+            className="rounded border border-rule px-3 py-1 text-sm text-muted transition-colors hover:border-link/50 hover:text-link"
+          >
+            download pdf ↓
+          </a>
         </div>
         <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
           <a href={`mailto:${site.email}`} className="link">

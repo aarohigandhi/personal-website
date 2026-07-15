@@ -1,2 +1,8 @@
 # Normalize line endings so the repo stays LF regardless of OS.
 * text=auto eol=lf
+
+# Never touch binary assets.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.ico binary
