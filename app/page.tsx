@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { site } from "@/lib/content";
 
-/*
-  Home is also the about page. Short, airy lines. Important words are bold and
-  highlighted in soft blue / green / yellow. No dashes.
-*/
+// Inline colors (not CSS classes) so they render even if the browser has an
+// old stylesheet cached. Three colors: light blue, bright yellow, light green.
+const C = { blue: "#7fb4f0", yellow: "#f5d94a", green: "#7fd99a" };
+
+function Word({ color, children }: { color: string; children: string }) {
+  return <strong style={{ color }}>{children}</strong>;
+}
+
 export default function Home() {
   return (
     <main className="mx-auto max-w-2xl px-6 pb-10 pt-8 sm:pt-16">
@@ -12,33 +16,32 @@ export default function Home() {
         <div>
           <h1 className="text-2xl text-bright">aarohi gandhi</h1>
           <p className="mt-1 text-muted">
-            i <span className="hl hl-green">build</span> things people actually
-            use.
+            i <Word color={C.green}>build</Word> things people actually use.
           </p>
         </div>
 
         <p>
-          started college at <span className="hl hl-yellow">fifteen</span>{" "}
-          (applied math and cs at uw), and building things is pretty much all
-          i&apos;ve done since.
+          started college at <Word color={C.yellow}>fifteen</Word> (applied math
+          and cs at uw), and building things is pretty much all i&apos;ve done
+          since.
         </p>
 
         <p>
-          as a teenager i founded{" "}
-          <span className="hl hl-blue">cyberminds</span>, a security learning
-          platform <strong className="text-bright">thousands of people</strong>{" "}
-          now use across a dozen countries.
+          as a teenager i founded <Word color={C.blue}>cyberminds</Word>, a
+          security learning platform{" "}
+          <strong className="text-bright">thousands of people</strong> now use
+          across a dozen countries.
         </p>
 
         <p className="text-bright">
           i think the best way to understand something is to{" "}
-          <span className="hl hl-green">build it</span>.
+          <Word color={C.green}>build it</Word>.
         </p>
 
         <p>
           when i&apos;m not building i&apos;m usually playing{" "}
-          <span className="hl hl-yellow">chess</span>, or taking apart a new
-          programming language to see how it thinks.
+          <Word color={C.yellow}>chess</Word>, or taking apart a new programming
+          language to see how it thinks.
         </p>
 
         <p className="text-muted">
