@@ -27,10 +27,7 @@ export default function ProjectsPage() {
   return (
     <main className="mx-auto max-w-2xl px-6 pb-8 pt-10 sm:pt-16">
       <p className="fade-in text-bright">projects</p>
-      <p className="fade-in mt-2 text-muted">
-        things i&apos;ve built. every number here is one i can reconstruct on
-        demand.
-      </p>
+      <p className="fade-in mt-2 text-muted">things i&apos;ve built.</p>
 
       <div className="fade-in mt-12 space-y-12">
         {projects.map((p) => (

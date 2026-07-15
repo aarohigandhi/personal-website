@@ -28,8 +28,8 @@ export default function Home() {
 
         <p>
           i dropped out of high school to start college at{" "}
-          <Word color={C.yellow}>fifteen</Word> (applied math and cs at uw), and
-          building things is pretty much all i&apos;ve done since.
+          <Word color={C.yellow}>fifteen</Word>{" "}(applied math and cs at uw),
+          and building things is pretty much all i&apos;ve done since.
         </p>
 
         <p>
@@ -64,10 +64,11 @@ export default function Home() {
         </p>
 
         <p className="text-muted">
+          here&apos;s my{" "}
           <Link href="/projects" className="link">
             projects
-          </Link>
-          ,{" "}
+          </Link>{" "}
+          and{" "}
           <Link href="/writing" className="link">
             writing
           </Link>
