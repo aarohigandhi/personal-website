@@ -7,13 +7,14 @@ export const metadata: Metadata = {
   description: `Resume of ${site.name}.`,
 };
 
-// Harmonized muted palette, one hue per section.
+// Resume stays clean: one neutral accent, no color coding.
+const ACCENT = "#79b8b0";
 const HUE = {
-  teal: "#57b8a8",
-  amber: "#d8a94c",
-  rose: "#df8b87",
-  violet: "#ab9ce6",
-  sage: "#90c89b",
+  teal: ACCENT,
+  amber: ACCENT,
+  rose: ACCENT,
+  violet: ACCENT,
+  sage: ACCENT,
 };
 
 function Section({
@@ -49,13 +50,10 @@ function Card({
   color: string;
   children: React.ReactNode;
 }) {
+  // color kept for signature compatibility; resume cards stay neutral.
+  void color;
   return (
-    <div
-      className="rounded-lg border border-rule bg-bg2 p-5"
-      style={{ borderLeft: `3px solid ${color}` }}
-    >
-      {children}
-    </div>
+    <div className="rounded-lg border border-rule bg-bg2 p-5">{children}</div>
   );
 }
 

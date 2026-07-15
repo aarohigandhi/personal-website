@@ -70,22 +70,19 @@ a.link:hover,
   color: var(--link-hover);
 }
 
-/* Highlighter marks — a small harmonized palette (muted teal / amber / rose)
-   so it reads colorful but curated, never a clashing rainbow. */
+/* Important words: bold, colored letters (no marker background).
+   Three colors only: light blue, bright yellow, light green. */
 .hl {
-  border-radius: 3px;
-  padding: 0.02em 0.28em;
   font-weight: 700;
-  color: var(--bright);
 }
-.hl-a {
-  background: color-mix(in srgb, #57b8a8 26%, transparent);
+.hl-blue {
+  color: #7fb4f0;
 }
-.hl-b {
-  background: color-mix(in srgb, #d8a94c 26%, transparent);
+.hl-yellow {
+  color: #f5d94a;
 }
-.hl-c {
-  background: color-mix(in srgb, #df8b87 26%, transparent);
+.hl-green {
+  color: #7fd99a;
 }
 
 /* Gentle entrance — subtle, not flashy. Works with JS off, ends visible. */
