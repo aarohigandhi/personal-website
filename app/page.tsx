@@ -4,8 +4,7 @@ import { site } from "@/lib/content";
 // Two greens: "build" words in bright green, the rest in soft lime. Inline so
 // they render even with a stale cached stylesheet.
 const GREEN = "#7fd99a";
-const LIME = "#d4f79b";
-const C = { blue: LIME, yellow: LIME, green: GREEN };
+const C = { blue: GREEN, yellow: GREEN, green: GREEN };
 
 function Word({ color, children }: { color: string; children: string }) {
   return <span style={{ color }}>{children}</span>;
