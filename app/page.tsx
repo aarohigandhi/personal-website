@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { site } from "@/lib/content";
 
-// One green accent for all highlighted words. Inline so they render even with
-// a stale cached stylesheet.
-const ACCENT = "#7fd99a";
-const C = { blue: ACCENT, yellow: ACCENT, green: ACCENT };
+// Two greens: "build" words in bright green, the rest in soft lime. Inline so
+// they render even with a stale cached stylesheet.
+const GREEN = "#7fd99a";
+const C = { blue: GREEN, yellow: GREEN, green: GREEN };
 
 function Word({ color, children }: { color: string; children: string }) {
   return <span style={{ color }}>{children}</span>;
@@ -17,27 +17,40 @@ export default function Home() {
         <h1 className="text-2xl text-bright">aarohi gandhi</h1>
 
         <p>
-          i dropped out of high school to start college at <Word color={C.yellow}>fifteen</Word> (applied math and cs at uw), and building things is pretty much all i&apos;ve done since.
+          i dropped out of high school to start college at{" "}
+          <Word color={C.yellow}>fifteen</Word>{" "}(applied math and cs at uw),
+          and building things is pretty much all i&apos;ve done since.
         </p>
 
         <p>
-          as a teenager i founded <Word color={C.blue}>cyberminds</Word>, a security learning platform <strong className="text-bright">thousands of people</strong> now use across a dozen countries.
+          as a teenager i founded <Word color={C.blue}>cyberminds</Word>, a
+          security learning platform{" "}
+          <strong className="text-bright">thousands of people</strong> now use
+          across a dozen countries.
         </p>
 
         <p className="text-bright">
-          i think the best way to understand something is to <Word color={C.green}>build it</Word>.
+          i think the best way to understand something is to{" "}
+          <Word color={C.green}>build it</Word>.
         </p>
 
         <p>
-          i care about clear communication, simple systems, and building things end to end.
+          i care about clear communication, simple systems, and building things
+          end to end.
         </p>
 
         <p>
-          lately i&apos;ve been exploring the frontier of <Word color={C.yellow}>ml</Word>, especially how to make models faster and actually usable.
+          lately i&apos;ve been exploring the frontier of{" "}
+          <Word color={C.yellow}>ml</Word>, especially how to make models faster
+          and actually usable.
         </p>
 
         <p className="text-sm text-muted">
-          right now i&apos;m after <strong className="text-bright">software engineering and ml internships</strong> where i can ship real things.
+          right now i&apos;m after{" "}
+          <strong className="text-bright">
+            software engineering and ml internships
+          </strong>{" "}
+          where i can ship real things.
         </p>
 
         <p className="text-muted">

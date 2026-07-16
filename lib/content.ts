@@ -54,7 +54,7 @@ export const projects: Project[] = [
     accent: "teal",
     meta: "2026 · flagship",
     blurb:
-      "search screenshots by meaning so information is easy to find again.",
+      "full stack semantic search over your screenshots, the graveyard of information nobody can search. the interesting part isn't the search, it's the labeled eval harness i built to grade top 3 retrieval accuracy and find where it was quietly failing.",
     metric: "labeled eval harness · top 3 retrieval",
     tags: ["Next.js", "pgvector", "Claude vision", "evals", "search"],
     links: [{ label: "site", href: "https://cacheapp.vercel.app/" }],
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     accent: "rust",
     meta: "2022 to present · founder",
     blurb:
-      "a nonprofit platform that teaches security by doing, not just reading about it.",
+      "an ai + cybersecurity learning platform: browser based linux terminals on docker, ctf challenges, and courses. i handle the isolation, resource limits, and teardown so thousands of strangers can get a shell without breaking anything that matters.",
     metric: "5,000+ monthly users · 12 countries",
     tags: ["Docker", "Next.js", "WebSockets", "security", "infra"],
     links: [{ label: "site", href: "https://cyber-minds.github.io/" }],
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     accent: "plum",
     meta: "2024 · DubHacks",
     blurb:
-      "a quick vision app for everyday sight tasks, built and demoed in a weekend.",
+      "a computer vision tool built at dubhacks to help with everyday sight tasks. built and demoed end to end in a weekend with a small team.", // TODO: sharpen what it actually does
     metric: "2nd of 200+ teams",
     tags: ["computer vision", "Python", "health"],
     links: [],
@@ -87,18 +87,18 @@ export const projects: Project[] = [
     accent: "gold",
     meta: "2024 to 2025 · Microsoft Imagine Cup",
     blurb:
-      "an ml system that flags phishing from urls and email metadata.",
+      "end to end ml threat detection pipeline: feature engineering on url and email metadata, a scikit learn classifier, an evaluation pipeline, and a real time alerting dashboard. led a 5 person team through the full lifecycle.",
     metric: "cut breach rate 45% on test data",
     tags: ["scikit learn", "Python", "ML", "security"],
     links: [],
     featured: false,
   },
   {
-    name: "Adaptive Context Compression",
+    name: "Adaptive KV Cache Compression",
     accent: "gold",
     meta: "in progress",
     blurb:
-      "a compact project on smarter long-context retention for model inference.",
+      "a custom decode loop with pluggable kv cache eviction policies, benchmarked against published baselines under identical instrumentation. my move into inference systems. i'll publish the result either way, including a clean negative one.",
     metric: "coming soon · inference systems",
     tags: ["PyTorch", "transformers", "inference", "LLMs"],
     links: [],
