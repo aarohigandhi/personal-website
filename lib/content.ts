@@ -54,7 +54,7 @@ export const projects: Project[] = [
     accent: "teal",
     meta: "2026 · flagship",
     blurb:
-      "a search tool for screenshots that turns visual clutter into something searchable.",
+      "search screenshots by meaning so information is easy to find again.",
     metric: "labeled eval harness · top 3 retrieval",
     tags: ["Next.js", "pgvector", "Claude vision", "evals", "search"],
     links: [{ label: "site", href: "https://cacheapp.vercel.app/" }],
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     accent: "rust",
     meta: "2022 to present · founder",
     blurb:
-      "a security learning platform for people who want hands-on practice without the usual friction.",
+      "a nonprofit platform that teaches security by doing, not just reading about it.",
     metric: "5,000+ monthly users · 12 countries",
     tags: ["Docker", "Next.js", "WebSockets", "security", "infra"],
     links: [{ label: "site", href: "https://cyber-minds.github.io/" }],
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     accent: "plum",
     meta: "2024 · DubHacks",
     blurb:
-      "a weekend vision app for everyday sight tasks, built fast and demoed end to end.",
+      "a quick vision app for everyday sight tasks, built and demoed in a weekend.",
     metric: "2nd of 200+ teams",
     tags: ["computer vision", "Python", "health"],
     links: [],
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     accent: "gold",
     meta: "2024 to 2025 · Microsoft Imagine Cup",
     blurb:
-      "an ml pipeline for spotting phishing signals from urls and email metadata.",
+      "an ml system that flags phishing from urls and email metadata.",
     metric: "cut breach rate 45% on test data",
     tags: ["scikit learn", "Python", "ML", "security"],
     links: [],
@@ -98,7 +98,7 @@ export const projects: Project[] = [
     accent: "gold",
     meta: "in progress",
     blurb:
-      "a small project on smarter context retention for long-context ml inference.",
+      "a compact project on smarter long-context retention for model inference.",
     metric: "coming soon · inference systems",
     tags: ["PyTorch", "transformers", "inference", "LLMs"],
     links: [],
